@@ -1,21 +1,9 @@
 
-<!-- <div>
-  <label for="new-grocery">Grocery Name: </label>
-  <input id="new-grocery" #newGroceryName />
-  <button
-    type="button"
-    class="create-button"
-    (click)="createGrocery(newGroceryName.value); newGroceryName.value = ''"
-  >
-    Create Grocery
-  </button>
-</div> -->
-
 <hr>
 <h2>Grocery Inventory</h2>
-<!-- <button type="button" class="refresh-button btn btn-primary"(click)="refreshInventory()">
-  Refresh
-</button> -->
+
+<!-- Manual Refresh button -->
+<!-- <button type="button" class="refresh-button btn btn-primary"(click)="refreshInventory()"> Refresh</button> -->
 
 <div class="col" *ngFor="let grocery of groceries">
   <button type="button" class="add-btn btn-primary" (click)="addToList(grocery.groceryID)"> Add </button>

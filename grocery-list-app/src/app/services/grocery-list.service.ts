@@ -16,6 +16,10 @@ export class GroceryListService {
   constructor(private http: HttpClient) { }
 
 
+ /*
+ //  This service is not currently in use.  I would like to pull list-related functionality out of grocery.service in the near future.
+ */
+
 
   getAllLists(): Observable<GroceryList> {
     console.log("getting all grocery lists...");

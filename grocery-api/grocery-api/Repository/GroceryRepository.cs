@@ -31,7 +31,6 @@ namespace grocery_api.Repository
 
         public bool CreateGrocery(Grocery grocery)
         {
-            // handle duplicate
             _dbContext.Groceries.Add(grocery);
             return Save();
         }
