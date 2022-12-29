@@ -1,0 +1,14 @@
+<h2> {{ list.groceryListID }} </h2>
+
+<button type="button" class="refresh-button btn btn-primary" (click)="refreshList()">
+    Refresh
+</button>
+
+<div class="list">
+    <div class="col" *ngFor="let grocery of list.groceries">
+    <button type="button" class="remove-btn button" (click)="remove(grocery.groceryID)"> X </button>
+    <div class="listed-item" >
+        <h5 class="name"> {{ grocery.groceryID }} </h5>
+        <h6 class="price"> ${{ grocery.price }} </h6>
+    </div>
+</div>

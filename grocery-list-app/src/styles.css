@@ -1,0 +1,44 @@
+/* You can add global styles to this file, and also import other style files */
+
+h6, h5 {
+    margin-bottom: 0rem !important;
+}
+
+button {
+    margin: 5px !important;
+    border-radius: 5px !important;
+    font-weight: 600 !important;
+}
+
+.add-btn {
+    background-color:#28c056;
+    border-color:#47d482;
+    color: white;
+}
+
+.remove-btn {
+    background-color: #dc3545;
+    border-color: #991c28;
+    color: white;
+    font-weight: bold !important;
+    width: 42px;
+}
+
+.price {
+    display: inline-block !important;
+    color:slategrey;
+}
+
+.name {
+    display: inline-block !important;
+    padding: 10px;
+}
+
+.listed-item {
+    display: inline-block !important;
+    margin-bottom: 0rem !important;
+}
+
+.list {
+    margin-bottom: 2rem !important;
+}
