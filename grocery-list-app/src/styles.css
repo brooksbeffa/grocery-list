@@ -27,11 +27,17 @@ button {
 .price {
     display: inline-block !important;
     color:slategrey;
+    padding-left: 5px;
 }
 
 .name {
     display: inline-block !important;
     padding: 10px;
+}
+
+.description {
+    display: inline-block !important;
+    color:rgb(89, 94, 99);
 }
 
 .listed-item {

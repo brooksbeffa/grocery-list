@@ -1,9 +1,7 @@
-<!-- <h2>Groceries</h2> -->
 
 <!-- <div>
   <label for="new-grocery">Grocery Name: </label>
   <input id="new-grocery" #newGroceryName />
-
   <button
     type="button"
     class="create-button"
@@ -13,22 +11,18 @@
   </button>
 </div> -->
 
-
-
+<hr>
 <h2>Grocery Inventory</h2>
-<button type="button" class="refresh-button btn btn-primary"(click)="refreshInventory()">
+<!-- <button type="button" class="refresh-button btn btn-primary"(click)="refreshInventory()">
   Refresh
-</button>
-
-<br />
-<br />
+</button> -->
 
 <div class="col" *ngFor="let grocery of groceries">
   <button type="button" class="add-btn btn-primary" (click)="addToList(grocery.groceryID)"> Add </button>
   <div class="listed-item">
-    <!-- <button type="button" class="add-button btn-primary" (click)="addToList(grocery.groceryID)"> Add </button> -->
-    <h5 class="name"> {{ grocery.groceryID }} </h5>
     <h6 class="price"> ${{ grocery.price }} </h6>
+    <h5 class="name"> {{ grocery.groceryID }} </h5>
+    <h6 class="description"> - {{ grocery.description }} </h6>
   </div>
 
 </div>

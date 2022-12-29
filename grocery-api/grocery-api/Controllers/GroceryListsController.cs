@@ -6,12 +6,12 @@ namespace grocery_api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GroceryListController : ControllerBase
+    public class GroceryListsController : ControllerBase
     {
         private readonly IGroceryListRepository _groceryListRepository;
         
 
-        public GroceryListController(GroceryListRepository groceryListRepository)
+        public GroceryListsController(IGroceryListRepository groceryListRepository)
         {
             _groceryListRepository = groceryListRepository;
         }

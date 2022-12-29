@@ -359,3 +359,4 @@ C:\Code\Truxio\grocery-api\GroceryLogicTest\obj\Debug\net6.0\refint\GroceryLogic
 C:\Code\Truxio\grocery-api\GroceryLogicTest\obj\Debug\net6.0\GroceryLogicTest.pdb
 C:\Code\Truxio\grocery-api\GroceryLogicTest\obj\Debug\net6.0\GroceryLogicTest.genruntimeconfig.cache
 C:\Code\Truxio\grocery-api\GroceryLogicTest\obj\Debug\net6.0\ref\GroceryLogicTest.dll
+C:\Code\Truxio\grocery-api\GroceryLogicTest\bin\Debug\net6.0\GroceryLogicTest.dll.config

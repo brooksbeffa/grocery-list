@@ -8,24 +8,21 @@ using Microsoft.AspNetCore.Mvc;
 namespace GroceryLogicTest
 {
 
-    public class TestGroceryiesController
+    public class TestGroceriesController
     {
         private readonly Mock<IGroceryRepository> groceryRepoStub = new();
-        private readonly Mock<IGroceryListRepository> listRepoStub = new();
-        private readonly Mock<IGroceryListGroceryRepository> listGroceryRepoStub = new();
-
         private readonly Random rand = new();
 
 
-        // naming convention: MethodName_StateUnderTest_ExpectedBehavior
+        // grocery tests
         [Fact]
-        public void GetGrocery_NonExistentItem_ReturnsNotFound()
+        public void GetGrocery_NonExistentGrocery_ReturnsNotFound()
         {
             // Arrange
             groceryRepoStub.Setup(repo => repo.GetGrocery("bad id"))
                 .Returns((Grocery)null);
 
-            var controller = new GroceriesController(groceryRepoStub.Object, listRepoStub.Object, listGroceryRepoStub.Object);
+            var controller = new GroceriesController(groceryRepoStub.Object);
             // Act
             var result = controller.GetGrocery("bad id");
 
@@ -34,19 +31,13 @@ namespace GroceryLogicTest
         }
 
 
-
         [Fact]
-        public void GetGrocery_ExistingItem_ReturnsExpectedGrocery()
+        public void GetGrocery_ExistingGrocery_ReturnsExpectedGrocery()
         {
             // Arrange
-            Grocery expectedGrocery = CreateRandomGrocery();
-            
-            
-            groceryRepoStub.Setup(repo => repo.GetGrocery(expectedGrocery.GroceryID))
-                .Returns(expectedGrocery);
-
-
-            var controller = new GroceriesController(groceryRepoStub.Object, listRepoStub.Object, listGroceryRepoStub.Object);
+            Grocery expectedGrocery = CreateRandomGrocery();      
+            groceryRepoStub.Setup(repo => repo.GetGrocery(expectedGrocery.GroceryID)).Returns(expectedGrocery);
+            var controller = new GroceriesController(groceryRepoStub.Object);
 
             // Act  
             var result = controller.GetGrocery(expectedGrocery.GroceryID);
@@ -60,12 +51,26 @@ namespace GroceryLogicTest
         }
 
 
+        [Fact]
+        public void CreateGrocery_NullBody_ReturnsBadRequest()
+        {
+            // Arrange
+            Grocery newGrocery = null;
+            var controller = new GroceriesController(groceryRepoStub.Object);
+
+            // Act
+            var result = controller.CreateGrocery(newGrocery);
+
+            // Assert
+            Assert.IsType<BadRequestResult>(result);
+        }
+
+
 
 
         // helper fucntion for tests
         private Grocery CreateRandomGrocery()
         {
-
             string randomIdString = Guid.NewGuid().ToString(); ;
 
             return new Grocery
@@ -74,9 +79,7 @@ namespace GroceryLogicTest
                 Description = null,
                 Price = rand.Next(100),
             };
-
         }
-
 
     }
 }

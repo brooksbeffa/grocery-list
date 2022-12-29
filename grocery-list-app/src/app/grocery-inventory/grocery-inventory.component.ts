@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Grocery } from '../grocery';
-import { GroceryService } from '../grocery.service';
+import { GroceryService } from '../services/grocery.service';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { GroceryService } from '../grocery.service';
 export class GroceryInventoryComponent implements OnInit {
 
   groceries: Grocery[] = [];
-  newGrocery: Grocery = { groceryID: '', price: 0 };
+  newGrocery: Grocery = { groceryID: '', price: 0, description: '' };
   selectedList = "my list";
 
   constructor(private groceryService: GroceryService) {}
@@ -22,29 +22,22 @@ export class GroceryInventoryComponent implements OnInit {
   }
 
   refreshInventory() {
-    console.log('Refreshing inventory...');
     this.groceryService.getAllGroceries().subscribe(groceries => this.groceries = groceries);
-
-    // reset the newGrocery variable. This won't be necessery with proper data binding
-    this.newGrocery = { groceryID: '', price: 0 };
+    this.newGrocery = { groceryID: '', price: 0, description: '' };
   }
 
   createGrocery(id: string) {
     this.newGrocery.groceryID = id;
     this.groceryService.createGrocery(this.newGrocery).subscribe(grocery => {  
-      this.refreshInventory() ,
-      console.log("created grocery: " + JSON.stringify(grocery)); 
+      this.refreshInventory()
     });
   }
 
   getGrocery(id: string) {
-    this.groceryService.getGrocery(id).subscribe(grocery => {
-      console.log("got grocery: " + JSON.stringify(grocery));
-    });
+    this.groceryService.getGrocery(id).subscribe(grocery => { });
   }
 
   addToList(groceryID: string){
-    console.log("adding to list...");
     this.groceryService.addGroceryToList(groceryID, this.selectedList).subscribe();
   }
 

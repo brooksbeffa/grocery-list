@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Grocery } from '../grocery';
 import { GroceryList } from '../grocery-list';
-import { GroceryService } from '../grocery.service';
+import { GroceryService } from '../services/grocery.service';
 import { interval, Subscription, timer } from 'rxjs';
+import { formatNumber } from '@angular/common';
 
 @Component({
   selector: 'grocery-list',
@@ -16,24 +17,28 @@ export class GroceryListComponent implements OnInit {
   selectedList = "my list";
   list : GroceryList = { groceryListID: '', groceries: [] };
   subscription !: Subscription;
+  total: number = 0;
 
   constructor(private groceryService: GroceryService) { }
 
   ngOnInit() {
     this.refreshList();
-
     this.subscription = timer(0, 5000).subscribe(_ => this.refreshList());
   }
 
   refreshList(){
-    console.log("refreshing list...");
-    this.groceryService.getList(this.selectedList).subscribe(list => this.list = list);
+    this.groceryService.getList(this.selectedList).subscribe(list => { 
+      this.list = list, 
+      this.calculateTotal() 
+    });
   }
 
   remove(groceryID: string){
-    console.log("removing...");
     this.groceryService.removeGroceryFromList(groceryID, this.selectedList).subscribe(_ => this.refreshList());
   }
+
+  calculateTotal() {
+    this.total = 0;
+    this.list.groceries.forEach(grocery => this.total += grocery.price)
+  }
 }
-
-
